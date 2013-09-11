@@ -1,6 +1,12 @@
 All the cats:
 <ul>
 <% @cats.each do |cat| %>
-<li><%= link_to cat.name, cat %></li>
+<li><%= link_to cat.name, cat %>
+  <form action= <%= cat_url cat.id  %> method="POST">
+    <input type = "submit" value="Delete cat">
+    <input type="hidden" name="_method" value="DELETE">
+  </form>
+</li>
 <% end %>
 </ul>
+

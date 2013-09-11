@@ -5,7 +5,7 @@ class CatsController < ApplicationController
   end
 
   def show
-    @cat = Cat.find(params[:id])
+    @cat = Cat.where(id: params[:id]).includes(:requests).first
   end
 
   def new
@@ -40,7 +40,7 @@ class CatsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @cat = Cat.find(params[:id])
 
     if @cat.destroy

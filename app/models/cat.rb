@@ -7,5 +7,12 @@ class Cat < ActiveRecord::Base
   validates_inclusion_of :sex, in: %w( M F )
   validates_inclusion_of :color, in: %w( Black Brown White Tabby Tie-Dye )
 
+  has_many(
+    :requests,
+    class_name: "CatRentalRequest",
+    foreign_key: :cat_id,
+    primary_key: :id,
+    dependent: :destroy
+    )
 
 end

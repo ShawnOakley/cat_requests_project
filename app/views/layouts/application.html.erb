@@ -2,12 +2,13 @@
 <html>
 <head>
   <title>CatsProject</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <p class="flash"><%= flash.notice %></p>
+
+<%= debug params %>
+
 <%= yield %>
 
 </body>
