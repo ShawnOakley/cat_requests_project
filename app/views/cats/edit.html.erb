@@ -1,0 +1,7 @@
+<form action= <%= cat_url @cat.id %>  method="post">
+  <input type="hidden" name="_method" value="put">
+
+  <%= render "form", cat: @cat %>
+
+  <input type="submit" value="Update cat info">
+</form>

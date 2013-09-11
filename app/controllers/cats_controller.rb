@@ -12,6 +12,23 @@ class CatsController < ApplicationController
 
   end
 
+  def update
+    @cat = Cat.find(params[:id])
+    @cat.update_attributes(params[:cat])
+
+    if @cat.save
+      redirect_to cat_url @cat.id
+    else
+      flash.notice = "Update failed"
+      redirect_to cats_url
+    end
+
+  end
+
+  def edit
+    @cat = Cat.find(params[:id])
+  end
+
   def create
     @cat = Cat.new(params[:cat])
 
@@ -19,6 +36,17 @@ class CatsController < ApplicationController
       redirect_to cat_url @cat.id
     else
       flash.notice = "Save failed"
+      redirect_to cats_url
+    end
+  end
+
+  def delete
+    @cat = Cat.find(params[:id])
+
+    if @cat.destroy
+      redirect_to cats_url
+    else
+      flash.notice = "Delete failed"
       redirect_to cats_url
     end
   end

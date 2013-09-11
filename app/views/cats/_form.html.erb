@@ -1,0 +1,27 @@
+<p>
+  <label for="cat_name">Name</label>
+  <input type="text" name="cat[name]" id="cat_name" value="<%=cat.name %>">
+</p>
+<p>
+  <label for="cat_age">Age</label>
+  <input type="text" name="cat[age]" id="cat_age" value="<%=cat.age %>">
+</p>
+<p>
+  <input type="radio" name="cat[sex]" id="cat_sex_male" value="M" <%="checked" if cat.sex == "M" %> >
+  <label for="cat_sex_male">Male</label>
+  <input type="radio" name="cat[sex]" id="cat_sex_female" value="F" <%="checked" if cat.sex == "F" %> >
+  <label for="cat_sex_female">Female</label>
+</p>
+<p>
+  <label for="cat_color">Color</label>
+  <select name="cat[color]" id="cat_color" selected="<%=cat.color%>">
+    <option value=""></option>
+    <% %w(Black Brown White Tabby Tie-Dye).each do |color| %>
+      <option value="<%=color%>" <%="selected" if cat.color == color %>><%=color%></option>
+    <% end %>
+  </select>
+</p>
+<p>
+  <label for="cat_birth_date">Birth Date</label>
+  <input type="date" name="cat[birth_date]" id="cat_birth_date" value= <%=cat.birth_date%> >
+</p>
