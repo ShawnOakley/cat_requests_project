@@ -5,6 +5,7 @@ class Cat < ActiveRecord::Base
 
   validates_numericality_of :age
   validates_inclusion_of :sex, in: %w( M F )
+  validates_inclusion_of :color, in: %w( Black Brown White Tabby Tie-Dye )
 
 
 end
