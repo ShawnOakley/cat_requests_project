@@ -6,6 +6,12 @@ CatsProject::Application.routes.draw do
       post "deny" => 'cat_rental_requests#deny'
     end
   end
+  resources :users do
+    resource :session, except: [:new, :create]
+  end
+
+  resource :session, only: [:new, :create]
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

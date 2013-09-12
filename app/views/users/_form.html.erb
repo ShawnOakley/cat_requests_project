@@ -1,0 +1,15 @@
+<p>
+  <label>User Name
+  <input type="text" name="user[user_name]" value="<%=user.user_name %>">
+  </label>
+</p>
+<p>
+  <label>Password
+  <input type="password" name="user[password]" value="<%=user.password %>">
+  </label>
+</p>
+
+<input
+ name="authenticity_token"
+ type="hidden"
+ value="<%= form_authenticity_token %>">

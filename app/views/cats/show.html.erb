@@ -19,7 +19,8 @@ All the stats:
 <ul>
   <% @cat.requests.order(:start_date).each do |request| %>
   <li>Request #<%= request.id %> : <%= request.start_date %> through  <%= request.end_date %> STATUS: <%= request.status %>
-    <% if request.pending? %>
+    <% @owner_id = CatRentalRequest.find(request.id).cat.user_id %>
+    <% if request.pending? && (current_user.id == @owner_id)%>
     <%= button_to "Approve", approve_cat_rental_request_url(request.id) %>
     <%= button_to "Deny", deny_cat_rental_request_url(request.id) %>
     <% end %>
@@ -28,3 +29,4 @@ All the stats:
 </ul>
 
 <%= button_to "Make a reservation for this cat", new_cat_rental_request_url, method: "get" %>
+<%= button_to "Edit this cat", edit_cat_url, method: "get" %>

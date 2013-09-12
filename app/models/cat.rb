@@ -1,7 +1,7 @@
 class Cat < ActiveRecord::Base
-  attr_accessible :age, :birth_date, :color, :name, :sex
+  attr_accessible :age, :birth_date, :color, :name, :sex, :user_id
 
-  validates :age, :birth_date, :color, :name, :sex, presence: true
+  validates :age, :birth_date, :color, :name, :sex, :user_id, presence: true
 
   validates_numericality_of :age
   validates_inclusion_of :sex, in: %w( M F )
@@ -11,6 +11,14 @@ class Cat < ActiveRecord::Base
     :requests,
     class_name: "CatRentalRequest",
     foreign_key: :cat_id,
+    primary_key: :id,
+    dependent: :destroy
+    )
+
+    belongs_to(
+    :owner,
+    class_name: "User",
+    foreign_key: :user_id,
     primary_key: :id,
     dependent: :destroy
     )

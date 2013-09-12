@@ -5,6 +5,11 @@ All the cats:
   <form action= <%= cat_url cat.id  %> method="POST">
     <input type = "submit" value="Delete cat">
     <input type="hidden" name="_method" value="DELETE">
+
+    <input
+     name="authenticity_token"
+     type="hidden"
+     value="<%= form_authenticity_token %>">
   </form>
 </li>
 <% end %>

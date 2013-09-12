@@ -1,4 +1,5 @@
 class CatsController < ApplicationController
+  before_filter :check_owner, only: [:edit]
 
   def index
     @cats = Cat.all
@@ -9,7 +10,10 @@ class CatsController < ApplicationController
   end
 
   def new
-
+    unless self.current_user
+      flash.notice = "Must be logged in to create a cat"
+      redirect_to new_session_url
+    end
   end
 
   def update
@@ -30,7 +34,10 @@ class CatsController < ApplicationController
   end
 
   def create
-    @cat = Cat.new(params[:cat])
+    @cat = current_user.cats.build(params[:cat])
+
+  #  params[:cat][:user_id] = self.current_user.id
+     #@cat = Cat.new(params[:cat])
 
     if @cat.save
       redirect_to cat_url @cat.id
@@ -50,4 +57,13 @@ class CatsController < ApplicationController
       redirect_to cats_url
     end
   end
+
+  def check_owner
+    @cat = Cat.find(params[:id])
+    unless self.current_user.id == @cat.user_id
+      flash.notice = "Can only edit your own cat"
+      redirect_to cats_url
+    end
+  end
+
 end

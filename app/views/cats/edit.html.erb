@@ -4,4 +4,9 @@
   <%= render "form", cat: @cat %>
 
   <input type="submit" value="Update cat info">
+
+  <input
+   name="authenticity_token"
+   type="hidden"
+   value="<%= form_authenticity_token %>">
 </form>

@@ -1,7 +1,9 @@
 <form action="<%= cat_rental_requests_url %>"  method="post">
 
+  <h1>  Cat Selections! </h1>
+
   <label>
-    Which cat
+    Please Select a Cat
     <select name="cat_rental_request[cat_id]">
       <option value="">Select a cat</option>
       <% @cats.each do |cat| %>
@@ -20,4 +22,9 @@
   </label>
 
   <input type="submit" value="Submit">
+
+  <input
+   name="authenticity_token"
+   type="hidden"
+   value="<%= form_authenticity_token %>">
 </form>
